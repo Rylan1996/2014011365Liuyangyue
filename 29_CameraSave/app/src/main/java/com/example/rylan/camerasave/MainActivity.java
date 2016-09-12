@@ -27,17 +27,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG="myTag";
+    private static final String TAG="sign";
 
-    String mCurrentPhotoPath;//图像文件路径
+    String mCurrentPhotoPath;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO_AND_SAVE_TO_PUBLIC = 2;
     static final int REQUEST_TAKE_PHOTO_AND_SAVE_TO_PRIVATE = 3;
 
-    ImageView mImageView=null;//缩略图
-
-
+    ImageView mImageView=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //拍照并保存到公共图片目录
         Button buttonSaveToPublic=(Button)findViewById(R.id.button);
-        //只有设备上有相机才能执行相机的有关操作
         if(!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
             buttonSaveToPublic.setEnabled(false);
         }
@@ -66,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         buttonSaveToPublic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // Ensure that there's a camera activity to handle the intent
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -87,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     @Override
@@ -98,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
         }else if (requestCode == REQUEST_TAKE_PHOTO_AND_SAVE_TO_PUBLIC && resultCode == RESULT_OK) {
-            setPic();//显示缩略图
+            setPic();
             addPicTogallery();
         }  else if (requestCode == REQUEST_TAKE_PHOTO_AND_SAVE_TO_PRIVATE && resultCode == RESULT_OK) {
-            setPic();//显示缩略图
+            setPic();
         }
     }
 
@@ -112,9 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;//设置仅加载位图边界信息（相当于位图的信息，但没有加载位图）
-
-        //返回为NULL，即不会返回bitmap,但可以返回bitmap的横像素和纵像素还有图片类型
+        bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 
         int photoW = bmOptions.outWidth;
@@ -149,23 +138,15 @@ public class MainActivity extends AppCompatActivity {
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-
-        //如果路径不存在，则创建之
         if(!storageDir.exists()) {
-            Log.v(TAG,"目录不存在，创建之");
+           // Log.v(TAG,"目录不存在，创建之");
             if(!storageDir.mkdirs()) {
-                Log.v(TAG,"目录创建失败");
+              //  Log.v(TAG,"目录创建失败");
                 return null;
             }
         }
 
-        //    File image = File.createTempFile(
-        //            imageFileName,  /* prefix */
-        //            ".jpg",         /* suffix */
-        //            storageDir      /* directory */
-        //    );
-
-        File image = new File(storageDir, imageFileName+"photo.jpg");
+        File image = new File(storageDir, imageFileName+"example.jpg");
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath =  image.getAbsolutePath();
