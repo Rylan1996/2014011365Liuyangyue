@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1C1C1C"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#771188"
+            android:theme="@style/Theme.ToolBar.Weather"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/toolbar_city_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                tools:text = "城市名"
+                tools:ignore="RelativeOverlap"
+                android:layout_weight="0.38" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/current_date"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            tools:text = "--年--月--日"
+            android:layout_marginTop="59dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:id="@+id/weather_info_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:id="@+id/weather_imageView"
+            tools:src="@mipmap/ic_weather"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/weather_description"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textColor="#FFF"
+            android:textSize="35sp"
+            tools:text = "天气情况"
+            android:layout_marginTop="59dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/temp_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFF"
+            android:textSize="35sp"
+            tools:text = "--℃~--℃"/>
+
+    </LinearLayout>
+
+</LinearLayout>

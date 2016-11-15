@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CityWeather</string>
+    <string name="menu_weather_refresh">更新天气</string>
+    <string name="menu_about_us">Setting</string>
+</resources>
